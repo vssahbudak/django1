@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "Main.apps.MainConfig",
+    "Events", # Events.apps.EventsConfig olarak da eklenebilir üstteki gibi
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
