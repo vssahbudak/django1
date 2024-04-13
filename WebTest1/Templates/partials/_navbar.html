@@ -2,7 +2,7 @@
     <div class="navbar navbar-expand-sm bg-primary navbar-dark">
         <div class="container">
             <a href="/" class="navbar-brand">Django Web</a>
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a href="{% url 'index' %}" class="nav-link">Events</a>                                              
                 </li>
@@ -18,6 +18,38 @@
                     {% endif %}    
                     >About</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="navbar-item">     
+                        <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">({{user.username}}) Logout</a>
+                        <form action="{% url 'logout'%}" method="POST" id="logout">
+                            {% csrf_token %}
+                            <input type="hidden">
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}"  
+                        {% if 'login' in request.path%}
+                            class="nav-link active"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %}  >Login</a>                                              
+                    </li>
+                    
+                    <li class="navbar-item">     
+                        <a href="{% url 'register' %}" 
+                        {% if 'register' in request.path%}
+                            class="nav-link active"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %}    
+                        >Register</a>
+                    </li>
+                {% endif %}
+                
+                
             </ul>
         </div>
     </div>

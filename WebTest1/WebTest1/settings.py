@@ -34,11 +34,12 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "Main.apps.MainConfig",
     "Events", # Events.apps.EventsConfig olarak da eklenebilir üstteki gibi
+    "user", # user modulu django içinde olduğu için Model olusturup adminde tanıtmamıza gerek yok
     "django.contrib.admin",
-    "django.contrib.auth",
+    "django.contrib.auth", #user modelini kullanan bölüm
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.messages",
+    "django.contrib.messages", # Django mesajları için modül
     "django.contrib.staticfiles",
     'django.contrib.humanize',
 ]
@@ -129,3 +130,11 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+#messages framework error u dangerı cevirme kırmızı uyarı için
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR:'danger',
+    
+}
